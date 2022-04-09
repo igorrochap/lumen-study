@@ -12,7 +12,8 @@ class Episode extends Model
     protected $fillable = [
         'season',
         'number',
-        'watched'
+        'watched',
+        'series_id'
     ];
 
     public function series(): BelongsTo
