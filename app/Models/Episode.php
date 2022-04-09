@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Episode extends Model
 {
     public $timestamps = false;
+    protected $table = 'episode';
     protected $fillable = [
         'season',
         'number',

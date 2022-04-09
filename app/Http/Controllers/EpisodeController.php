@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Series;
+use App\Models\Episode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class SeriesController extends Controller
+class EpisodeController extends Controller
 {
     public function index(): Collection
     {
-        return Series::all();
+        return Episode::all();
     }
 
     public function store(Request $request): JsonResponse
     {
         return response()->json(
-            Series::create($request->all()),
+            Episode::create($request->all()),
             201
         );
     }
 
     public function show(int $id): JsonResponse
     {
-        $series = Series::find($id);
+        $series = Episode::find($id);
         if(is_null($series)) {
             return response()->json('', 204);
         }
@@ -33,7 +33,7 @@ class SeriesController extends Controller
 
     public function update(int $id, Request $request): JsonResponse
     {
-        $series = Series::find($id);
+        $series = Episode::find($id);
         if(is_null($series)) {
             return response()->json(["message" => "Resource not found!"], 404);
         }
@@ -44,7 +44,7 @@ class SeriesController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $removedResource = Series::destroy($id);
+        $removedResource = Episode::destroy($id);
         if($removedResource === 0) {
             return response()->json(["message" => "Resource not found!"], 404);
         }
