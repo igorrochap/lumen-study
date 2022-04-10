@@ -15,6 +15,7 @@ class Episode extends Model
         'watched',
         'series_id'
     ];
+    protected $appends = ['links'];
 
     public function series(): BelongsTo
     {
@@ -24,5 +25,13 @@ class Episode extends Model
     public function getWatchedAttribute(bool $watched): bool
     {
         return $watched;
+    }
+
+    public function getLinksAttribute($links): array
+    {
+        return [
+            "self" => "/api/episodes/$this->id",
+            "series" => "/api/series/$this->series_id"
+        ];
     }
 }

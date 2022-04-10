@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Series;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class BaseController
 {
     protected string $model;
 
-    public function index(): Collection
+    public function index(Request $request): LengthAwarePaginator
     {
-        return $this->model::all();
+        return $this->model::paginate($request->per_page);
     }
 
     public function store(Request $request): JsonResponse
